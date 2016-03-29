@@ -13,17 +13,27 @@ public class Mahasiswa extends Orang{
     private String nim;
     private String jurusan;   
     private boolean status;
+    private boolean cekKelompok;
     
     public Mahasiswa(String nama, String jenisKelamin, String alamat, String telp, String nim, String jurusan) {
         super(nama,jenisKelamin,alamat,telp); 
         this.nim = nim;
         this.jurusan = jurusan;
         
-    }
+    }       
     
     public Mahasiswa(String nama, String jenisKelamin, String alamat, String telp) {
         super(nama, jenisKelamin, alamat, telp);
     }
+
+    public boolean isCekKelompok() {
+        return cekKelompok;
+    }
+
+    public void setCekKelompok(boolean cekKelompok) {
+        this.cekKelompok = cekKelompok;
+    }
+        
 
     public String getNim() {
         return nim;

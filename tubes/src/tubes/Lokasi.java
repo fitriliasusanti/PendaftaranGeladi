@@ -15,6 +15,14 @@ public class Lokasi {
     private String namaPerusahaan;
     private String kota;
     private int jmlKelompok = 0;
+
+    public int getJmlKelompok() {
+        return jmlKelompok;
+    }
+
+    public void setJmlKelompok(int jmlKelompok) {
+        this.jmlKelompok = jmlKelompok;
+    }
     
     public Lokasi(String namaPerusahaan, String kota) {
         this.namaPerusahaan = namaPerusahaan;
@@ -38,12 +46,11 @@ public class Lokasi {
     }    
     
     public void setPembimbing(Pembimbing p) {
-        this.pembimbing = p;
-        
+        this.pembimbing = p;        
     }
     
-    public void createKelompok(Mahasiswa mhs){
-        this.kelompok[this.jmlKelompok] = new Kelompok(mhs);
+    public void createKelompok(Kelompok kel){
+        this.kelompok[this.jmlKelompok] =  kel;
         this.jmlKelompok++;    
     } 
     

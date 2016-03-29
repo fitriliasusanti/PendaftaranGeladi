@@ -46,31 +46,43 @@ public class Tubes {
         Mahasiswa m3 = new Mahasiswa("Susanti", "perempuan", "Mojokerto", "08561234567", "1301144340", "IF");
         Mahasiswa m4 = new Mahasiswa("Minah", "perempuan", "Mojokerto", "08561234567", "1301144340", "IF");
         Mahasiswa m5 = new Mahasiswa("Siti", "perempuan", "Mojokerto", "08561234567", "1301144340", "IF");
-        System.out.println("NIM : "+m1.getNim());
-        System.out.println("Nama : "+m1.getNama());
-        System.out.println("Jurusan : "+m1.getJurusan());
-        System.out.println("Jenis Kelamin : "+m1.getJenisKelamin());
-        System.out.println("Alamat : "+m1.getAlamat());
-        System.out.println("Telp : "+m1.getTelp());
-        System.out.println("---------------------------");
+        Mahasiswa m6 = new Mahasiswa("Hahaha", "perempuan", "Mojokerto", "08561234567", "1301144340", "IF");
+        Mahasiswa m7 = new Mahasiswa("Hihihi", "perempuan", "Mojokerto", "08561234567", "1301144340", "IF");
+        Mahasiswa m8 = new Mahasiswa("Hehehe", "perempuan", "Mojokerto", "08561234567", "1301144340", "IF");
         
-        System.out.println();
-        System.out.println("FUNGSIONALITAS DATA KELOMPOK");
-        Kelompok kel1 = new Kelompok(m1);        
+        System.out.println("Nama : "+m1.getNama());
+        System.out.println("---------------------------");
+               
+        Kelompok kel1 = new Kelompok(m1);
         kel1.addAnggota(m2);
-        kel1.addAnggota(m3);
+        kel1.addAnggota(m3);        
         kel1.addAnggota(m4);
-        kel1.addAnggota(m5);
         kel1.getAnggota();
         
-        System.out.println();
+        Kelompok kel2 = new Kelompok(m5);
+        
+        kel2.addAnggota(m6);
+        kel2.addAnggota(m7);
+        kel2.addAnggota(m8);
+        kel2.getAnggota();
+                
         Lokasi l = new Lokasi("Telkomsel", "Bandung");
         l.setPembimbing(p);
-        l.createKelompok(m1);
-        l.createKelompok(m2);
-        System.out.println("No kelompok : "+l);
-        System.out.println(l.getKelompok(0).getAnggotabyIndex(0).getNama());
-        //System.out.println(kel1.getAnggotabyIndex(0).getNama());
+        l.createKelompok(kel1); 
+        l.createKelompok(kel2);
+                
         
+        
+        System.out.println("-----DATA-DATA KELOMPOK-----");
+        System.out.println("Lokasi : "+l.getKota());
+        System.out.println("Perusahaan : "+l.getNamaPerusahaan());
+        for (int i=0; i<l.getJmlKelompok(); i++) {
+            Kelompok k = l.getKelompok(i);
+            System.out.println("Kelompok : "+(i+1));
+            for (int j=0; j<k.getJmlMhs(); j++ ) {
+                Mahasiswa m = k.getAnggotabyIndex(j);                
+                System.out.println("Anggota Kelompok : "+m.getNama());
+            }            
+        }        
     }    
 }

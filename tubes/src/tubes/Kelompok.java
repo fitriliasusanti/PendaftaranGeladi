@@ -13,22 +13,36 @@ public class Kelompok {
     private Mahasiswa[] anggota = new Mahasiswa[5];    
     private int jmlMhs = 0;            
 
+    public int getJmlMhs() {
+        return jmlMhs;
+    }
+
+    public void setJmlMhs(int jmlMhs) {
+        this.jmlMhs = jmlMhs;
+    }
+    
+    
     public Kelompok(Mahasiswa mhs) {
         this.anggota[this.jmlMhs] = mhs; 
         this.jmlMhs ++;
     }
-  
+    
+    
     public void addAnggota(Mahasiswa m) {
-        anggota[jmlMhs] = m;
-        jmlMhs++;
+        if (!m.isCekKelompok()) {
+            m.setCekKelompok(true);
+            anggota[jmlMhs] = m;
+            jmlMhs++;
+        }            
     }
+    
     public void getAnggota(){
-        for(int i = 0; i < anggota.length; i++){
+        for(int i = 0; i < jmlMhs; i++){
             System.out.println(anggota[i].getNama());
-        }
-        //System.out.println(anggota.length);
+        }        
         
     }
+    
     public Mahasiswa getAnggotabyIndex(int n) {
         return anggota[n];
     }
