@@ -5,6 +5,8 @@
  */
 package tubes;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Fitrilia
@@ -15,9 +17,9 @@ public class Tubes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Scanner in = new Scanner(System.in);
-//        String username , password;
-//        System.out.println("Username : ");
+        Scanner in = new Scanner(System.in);
+        String username , password;
+        System.out.println("Username : ");
 //        username = in.nextLine();
 //        System.out.println("Password : ");
 //        password = in.nextLine();
