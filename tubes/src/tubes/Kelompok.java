@@ -11,8 +11,22 @@ package tubes;
  */
 public class Kelompok {
     private Mahasiswa[] anggota = new Mahasiswa[5];    
-    private int jmlMhs = 0;            
+    private int jmlMhs = 0;    
+    private int jmlKelompok = 0;
+       
+    public Kelompok(Mahasiswa mhs) {
+        this.anggota[this.jmlMhs] = mhs; 
+        this.jmlMhs ++;
+    }
 
+    public int getJmlKelompok() {
+        return jmlKelompok;
+    }
+
+    public void setJmlKelompok(int jmlKelompok) {
+        this.jmlKelompok = jmlKelompok;
+    }
+    
     public int getJmlMhs() {
         return jmlMhs;
     }
@@ -20,13 +34,6 @@ public class Kelompok {
     public void setJmlMhs(int jmlMhs) {
         this.jmlMhs = jmlMhs;
     }
-    
-    
-    public Kelompok(Mahasiswa mhs) {
-        this.anggota[this.jmlMhs] = mhs; 
-        this.jmlMhs ++;
-    }
-    
     
     public void addAnggota(Mahasiswa m) {
         if (!m.isCekKelompok()) {

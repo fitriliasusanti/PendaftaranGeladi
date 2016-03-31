@@ -13,7 +13,7 @@ public abstract class Orang {
     private String nama;
     private String jenisKelamin;
     private String alamat;
-    private String telp;
+    private String telp;        
     
     //constructor   
     public Orang(String nama, String jenisKelamin, String alamat, String telp) {

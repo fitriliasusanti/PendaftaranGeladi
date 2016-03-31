@@ -10,20 +10,45 @@ package tubes;
  * @author Fitrilia
  */
 public class Pembimbing extends Orang {
-    private long nip;
-    private String kodeDosen;   
+    private String nip;
+    private String kodeDosen;  
+    private Lokasi[] lokasi = new Lokasi[10];
+    private int i = 0;
     
-    public Pembimbing(String nama, String jenisKelamin,  String alamat, String telp, long nip, String kodeDosen) {
+    public Pembimbing(String nama, String jenisKelamin,  String alamat, String telp, String nip, String kodeDosen) {
         super(nama,jenisKelamin,alamat,telp);
         this.nip = nip;
         this.kodeDosen = kodeDosen;
+    }         
+
+    public Lokasi getLokasi(int index) {
+         if (index<10)
+        {
+            return lokasi[index];
+        } 
+        else 
+        {
+            return null;
+        }
     }
 
-    public long getNip() {
+    public void createLokasi(Lokasi l) {
+        if (i<10)
+        {
+            lokasi[i] = l;
+            i++;
+        }
+        else
+        {
+            System.out.println("Array Pesanan Penuh !!!");
+        }
+    }
+    
+    public String getNip() {
         return nip;
     }
 
-    public void setNip(long nip) {
+    public void setNip(String nip) {
         this.nip = nip;
     }
 
