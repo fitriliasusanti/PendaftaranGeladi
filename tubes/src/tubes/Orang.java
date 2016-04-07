@@ -10,15 +10,13 @@ package tubes;
  * @author Fitrilia
  */
 public abstract class Orang {
-    private String nama;
-    private String jenisKelamin;
+    private String nama;    
     private String alamat;
     private String telp;        
     
     //constructor   
-    public Orang(String nama, String jenisKelamin, String alamat, String telp) {
-        this.nama = nama;
-        this.jenisKelamin = jenisKelamin;
+    public Orang(String nama, String alamat, String telp) {
+        this.nama = nama;        
         this.alamat = alamat;
         this.telp = telp;
     }
@@ -47,11 +45,10 @@ public abstract class Orang {
         this.nama = nama;
     }
 
-    public String getJenisKelamin() {
-        return jenisKelamin;
+    public String toString(){
+        String x ="\nNama : "+this.getNama()+                
+                "\nAlamat : "+this.getAlamat()+
+                "\nTelp : "+this.getTelp();        
+        return x;
     }
-
-    public void setJenisKelamin(String jenisKelamin) {
-        this.jenisKelamin = jenisKelamin;
-    }        
 }

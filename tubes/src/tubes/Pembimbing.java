@@ -11,38 +11,14 @@ package tubes;
  */
 public class Pembimbing extends Orang {
     private String nip;
-    private String kodeDosen;  
-    private Lokasi[] lokasi = new Lokasi[10];
-    private int i = 0;
+    private String kodeDosen;     
+    private int i = 0;       
     
-    public Pembimbing(String nama, String jenisKelamin,  String alamat, String telp, String nip, String kodeDosen) {
-        super(nama,jenisKelamin,alamat,telp);
+    public Pembimbing(String nama, String alamat, String telp, String nip, String kodeDosen) {
+        super(nama,alamat,telp);
         this.nip = nip;
         this.kodeDosen = kodeDosen;
-    }         
-
-    public Lokasi getLokasi(int index) {
-         if (index<10)
-        {
-            return lokasi[index];
-        } 
-        else 
-        {
-            return null;
-        }
-    }
-
-    public void createLokasi(Lokasi l) {
-        if (i<10)
-        {
-            lokasi[i] = l;
-            i++;
-        }
-        else
-        {
-            System.out.println("Array Pesanan Penuh !!!");
-        }
-    }
+    }            
     
     public String getNip() {
         return nip;
@@ -58,8 +34,12 @@ public class Pembimbing extends Orang {
 
     public void setKodeDosen(String kodeDosen) {
         this.kodeDosen = kodeDosen;
-    }  
+    }          
+    
     public String toString(){
-        return super.getNama();
+        String x = "\nNIP : "+this.getNip()+
+                "\nKode Dosen : "+this.getKodeDosen()+
+                "\nNama Dosen : "+this.getNama();                
+        return x;
     }
 }

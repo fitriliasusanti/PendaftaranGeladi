@@ -25,32 +25,24 @@ public class Aplikasi {
     private List<Kelompok> daftarKelompok = new ArrayList<Kelompok>();    
     
     /* ---------------------------- fungsional add --------------------------- */
-    /*
-        tambah pembimbing
-        tambah lokasi
-        tambah kelompok
-        tambah anggota        
-    */
-    public void addPembimbing(String nama, String alamat, String telp, String nip, String kodeDosen) {                  
-        Pembimbing pembimbing = new Pembimbing(nama, alamat, telp, nip, kodeDosen);        
-        daftarPembimbing.add(pembimbing);        
+ 
+    public void addPembimbing(String nama, String alamat, String telp, String nip, String kodeDosen) {
+        Pembimbing pembimbing = new Pembimbing(nama, alamat, telp, nip, kodeDosen);
+        daftarPembimbing.add(pembimbing);
     }
-    
-//    public void addMahasiswa(String nama, String alamat,
-//            String telp, String nim, String fakultas, String jurusan) {       
-//        Mahasiswa mhs = new Mahasiswa(nama, alamat, telp, nim, fakultas, jurusan);        
-//        daftarMahasiswa.add(mhs);       
-//    }
-    
-    public void addKelompok(int nomerKel, String lokasi, String namaPerusahaan, 
+
+    public void addMahasiswa(String nama, String alamat,
+            String telp, String nim, String fakultas, String jurusan) {
+        Mahasiswa mhs = new Mahasiswa(nama, alamat, telp, nim, fakultas, jurusan);
+        daftarMahasiswa.add(mhs);
+    }
+
+    public void addKelompok(int nomerKel, String lokasi, String namaPerusahaan,
             String namaPembimbing) {
         Lokasi lok = new Lokasi(nomerKel, lokasi, namaPerusahaan, namaPembimbing);
         daftarLokasi.add(lok);
     }
-
-//    public void addLokasi(Lokasi l) {
-//        daftarLokasi.add(l);
-//    }                
+      
     
     /*---------------------------- fungsional get --------------------------------*/
     public Mahasiswa getMahasiswa(String nim) {
@@ -95,10 +87,7 @@ public class Aplikasi {
        
     
     /*---------------------------- fungsional hapus --------------------------------*/
-    /*
-    *   hapus kelompok
-        hapus anggota
-    */
+   
     public void deleteMahasiswa(String nim) {
         for (int i=0; i<daftarMahasiswa.size(); i++) {
             Mahasiswa mhs = daftarMahasiswa.get(i);
@@ -175,29 +164,21 @@ public class Aplikasi {
     public void mahasiswa() {
         System.out.println("=== Hai Mahasiswa ===");
         System.out.println("SELAMAT DATANG APLIKASI PENDAFTARAN GELADI");
-        System.out.println("1. Pendaftaran Geladi");
-        System.out.println("2. View Data Kelompok");
-        System.out.println("3. View Data Lokasi dan Perusahaan");
-        System.out.println("4. Tambah Anggota Kelompok");
-        System.out.println("5. Logout");
+        System.out.println("1. Pendaftaran Geladi");                
+        System.out.println("2. Tambah Anggota Kelompok");
+        System.out.println("3. Logout");
             
         System.out.print("Pilihan : ");
             pilihan = pil.nextInt();
-            switch(pilihan) {
+            switch(pilihan) {                
                 case 1 : pendaftaranGeladi();
+                break;                
+                case 2 : tambahAnggotaKelompok();
                 break;
-                case 2 : viewKelompok();
-                break;
-                case 3 : viewLokasi();
-                break;
-                case 4 : tambahAnggota();
-                break;
-//                case 5 : belum
-//                break;
-            }
+         }
     }
     
-    /*_________________________ADMIN_________________________*/
+    /*________________________________ADMIN_________________________________*/
     // ------------------- ADMIN DATA PEMBIMBING---------------------------
     public void pembimbing() {        
         System.out.println();
@@ -221,35 +202,40 @@ public class Aplikasi {
     }
                 
     public void viewPembimbing() {
-        for(int i=0; i<daftarPembimbing.size(); i++) {
-            Pembimbing pem = daftarPembimbing.get(i);            
-            System.out.println("NIP : "+pem.getNip());
-            System.out.println("Kode Dosen : "+pem.getKodeDosen());
-            System.out.println("Nama : "+pem.getNama());            
-            System.out.println("Telp : "+pem.getTelp());            
-            System.out.println("Alamat : "+pem.getAlamat());
+        if (daftarPembimbing.isEmpty()) {
+            System.out.println("BELUM ADA DATA PEMBIMBING");
         }
+        else {            
+                System.out.println("Data Pembimbing");
+                for(int i=0; i<daftarPembimbing.size(); i++) {
+                Pembimbing pem = daftarPembimbing.get(i);            
+                System.out.println("NIP : "+pem.getNip());
+                System.out.println("Kode Dosen : "+pem.getKodeDosen());
+                System.out.println("Nama : "+pem.getNama());            
+                System.out.println("Telp : "+pem.getTelp());            
+                System.out.println("Alamat : "+pem.getAlamat());
+            }
+        }        
         pembimbing();
     }
     
     public void tambahPembimbing() {
         System.out.println("--- Tambah Pembimbing ---");
         Scanner in = new Scanner(System.in);
-        String nip, nama, telp, jenisKelamin,alamat,kodeDosen;
+        Pembimbing pem=null;
+        String nip, nama, telp,alamat,kodeDosen;
         System.out.print("NIP : ");
             nip = in.next();
         System.out.print("Nama : ");
             nama = in.next();
         System.out.print("Telp : ");
-            telp = in.next();
-        System.out.print("Jenis Kelamin : ");
-            jenisKelamin = in.next();
+            telp = in.next();       
         System.out.print("Alamat : ");
             alamat  = in.next();
         System.out.print("Kode Dosen : ");
             kodeDosen = in.next();                   
-        
-        addPembimbing(nama,alamat,telp,nip,kodeDosen);
+        pem = new Pembimbing(nama, alamat, telp, nip, kodeDosen);
+        daftarPembimbing.add(pem);
         pembimbing();        
     }
     
@@ -273,7 +259,7 @@ public class Aplikasi {
                 String hapus;
                 hapus = scanner.next();
                 if(hapus.equals("Y")) {
-                    deletePembimbing(nip);
+                    daftarPembimbing.remove(i);
                     System.out.println("BERHASIL DI HAPUS");
                     pembimbing();
                } else if(hapus.equals("N")){
@@ -302,9 +288,9 @@ public class Aplikasi {
             break;            
             case 2 : tambahKelompok();
             break;
-            case 3 : hapusKelompok();
-            break;
             /*
+            case 3 : hapusKelompok();
+            break;            
             case 4 : tambahAnggota();
             break;
             case 5 : hapusAnggota();
@@ -337,6 +323,7 @@ public class Aplikasi {
         System.out.println("--- Tambah Kelompok ---");        
         
         int nomerKel;
+        Pembimbing pem;
         String lokasi, namaPerusahaan, namaPembimbing, nama, alamat, telp, nim, fakultas, jurusan;        
         System.out.print("Lokasi          : ");
             lokasi = in.next();
@@ -344,10 +331,16 @@ public class Aplikasi {
             namaPerusahaan = in.next();
         System.out.print("Nama Pembimbing : ");
             namaPembimbing = in.next();  
+            
+            while (!daftarPembimbing.contains(namaPembimbing)) {
+                System.out.print("Nama Pembimbing : ");
+                namaPembimbing = in.next();
+            }
                 
         String pilihan = "Y";       
         int jmlAnggota =0;
-        Kelompok kel;        
+        
+        Kelompok kel=null;       
         while (pilihan.equals("Y") && jmlAnggota<5) {
             System.out.print("NIM        : ");
                 nim = in.next();
@@ -363,9 +356,10 @@ public class Aplikasi {
                 telp = in.next();
             jmlAnggota++;
             Mahasiswa mhs = new Mahasiswa(nama, alamat, telp, nim, fakultas, jurusan);
+            daftarKelompok.add(kel);
             if (jmlAnggota == 1) {
                 kel = new Kelompok(mhs);
-            } else {
+            } else {                
                 kel.addAnggota(mhs);
             }
             
@@ -374,9 +368,8 @@ public class Aplikasi {
                 pilihan = in.next();                
             }            
         }                        
-        
         daftarKelompok.add(kel);
-        pembimbing();        
+        kelompok();        
     }
     
     public void hapusKelompok() {
@@ -384,7 +377,7 @@ public class Aplikasi {
         String lokasi, nomer;
         System.out.println("Masukkan Lokasi : ");
             lokasi = scanner.next();
-        Lokasi lok;
+        Lokasi lok=null;
         for(int i=0; i<daftarLokasi.size(); i++) {
             lok = daftarLokasi.get(i);
             if (lokasi.equals(lok.getKota())) {
@@ -406,10 +399,10 @@ public class Aplikasi {
     
     public void tambahAnggota() {
         System.out.println("--- Tambah Anggota Kelompok  ---");                
-        String nama, jenisKelamin, alamat, telp,  nim,  jurusan, lokasi, nomer;                
+        String nama, fakultas, alamat, telp,  nim,  jurusan, lokasi, nomer;                
         System.out.println("Masukkan lokasi : ");        
             lokasi = scanner.next();
-        Lokasi lok;        
+        Lokasi lok=null;        
         for(int i=0; i<daftarLokasi.size(); i++) {
             lok = daftarLokasi.get(i);
             if(lokasi.equals(lok.getKota())) {
@@ -419,14 +412,18 @@ public class Aplikasi {
         
         if (lokasi.equals(lok.getKota())) {
             for(int j=0; j<lok.getJmlKelompok(); j++) {
-                System.out.println("Nomer Kelompok : "+lok.getKelompok(j).getNomerKelompok());
-                System.out.println("Jumlah Anggota : "+lok.getKelompok(j).getJmlAnggota());
+                if(lok.getKelompok(j).getJmlAnggota()<5) {
+                    System.out.println("Nomer Kelompok : "+lok.getKelompok(j).getNomerKelompok());
+                    System.out.println("Jumlah Anggota : "+lok.getKelompok(j).getJmlAnggota());
+                }                
             }
             System.out.println("Masukkan nomer kelompok :  ");
                 nomer = scanner.next();            
+            
             String pilihan = "Y";       
-            int jmlAnggota =0;
-            Kelompok kel;        
+            int j = 0;
+            int jmlAnggota = lok.getKelompok(j).getJmlAnggota(); // harusnya sesuai jumlah index terakhir
+            Kelompok kel=null;        
             while (pilihan.equals("Y") && jmlAnggota<5) {
                 System.out.print("NIM        : ");
                     nim = in.next();
@@ -441,43 +438,71 @@ public class Aplikasi {
                 System.out.print("Telp       : ");
                     telp = in.next();
                 jmlAnggota++;
-                Mahasiswa mhs = new Mahasiswa(nama, alamat, telp, nim, fakultas, jurusan);
-                if (jmlAnggota == 1) {
-                    kel = new Kelompok(mhs);
-                } else {
-                    kel.addAnggota(mhs);
-                }
-
+                Mahasiswa mhs = new Mahasiswa(nama, alamat, telp, nim, fakultas, jurusan);                
                 if (jmlAnggota < 5) {
                     System.out.print("Tambah anggota ? (Y/N): ");
                     pilihan = in.next();                
                 }                                  
+            }
+            daftarKelompok.add(kel);
         }
-        
-        //addMahasiswa(nama, jenisKelamin, alamat, telp,  nim,  jurusan);
         pembimbing();        
     }
     
-    public void hapusAnggota() {/*--belum--*/}
+    public void hapusAnggota() /* belum */ { 
+        System.out.println("--- Hapus Anggota Kelompok  ---");                
+        String nama, fakultas, alamat, telp,  nim,  jurusan, lokasi, nomer;                
+        System.out.println("Masukkan lokasi : ");        
+            lokasi = scanner.next();
+        Lokasi lok=null;        
+        for(int i=0; i<daftarLokasi.size(); i++) {
+            lok = daftarLokasi.get(i);
+            if(lokasi.equals(lok.getKota())) {
+                System.out.println("Lokasi : "+lok.getKota());
+                System.out.println("Jumlah Kelompok : "+lok.getJmlKelompok());
+                System.out.println("--- Data - data kelompok ---");
+                break;
+            }
+        }
+        
+        if (lokasi.equals(lok.getKota())) {
+            for(int j=0; j<lok.getJmlKelompok(); j++) {                
+                System.out.println("Nomer Kelompok : "+lok.getKelompok(j).getNomerKelompok());
+                Kelompok kel = daftarKelompok.get(j);
+                for (int k=0; k<kel.getJmlAnggota(); k++) {                                        
+                    Mahasiswa mhs = kel.getAnggotabyIndex(k);                    
+                    System.out.println("Nama    : "+ mhs.getNama());
+                    System.out.println("Telp    : "+ mhs.getTelp());            
+                    System.out.println("Alamat  : "+ mhs.getAlamat());                     
+                }            
+            }    
+            System.out.println("Masukkan nomer kelompok :  ");
+                nomer = scanner.next();      
+            // looping anggota
+            // hapus anggota
+        }
+    }        
+    
     
     
     /*_________________________MAHASISWA_________________________*/
-    
+
     public void pendaftaranGeladi() {
         System.out.println();
                 
         System.out.println("--- PENDAFTARAN GELADI ---");
         Scanner in = new Scanner(System.in);
-        String nim, nama, jurusan, jk, alamat, telp, lokasi, perusahaan;
+        String nim, nama, fakultas, jurusan, alamat, telp, lokasi, perusahaan;
+        Kelompok kel=null;
         
         System.out.println("NIM : ");
             nim = in.next();
         System.out.println("Nama : ");
             nama = in.next();
-        System.out.println("Jurusan : ");
+        System.out.println("Fakultas : ");
             jurusan = in.next();
-        System.out.println("Jenis Kelamin : ");
-            jk = in.next();
+        System.out.println("Jurusan : ");
+            fakultas = in.next();
         System.out.println("Alamat : ");
             alamat = in.next();
         System.out.println("Telp : ");
@@ -485,20 +510,64 @@ public class Aplikasi {
         System.out.println("Lokasi : ");
             lokasi = in.next();
         System.out.println("Perusahaan : ");
-            perusahaan = in.next();        
+            perusahaan = in.next();                
             
-        //addMahasiswa(nama, perusahaan, alamat, telp, nim, jurusan, lok);
+        daftarKelompok.add(kel);
     }
     
-    public void viewLokasi() {/*--belum--*/}    
-    
-    public void viewAnggota() {
-        for(int i=0; i<daftarMahasiswa.size(); i++) {
-            Mahasiswa mhs = daftarMahasiswa.get(i);            
-            System.out.println("NIM : "+mhs.getNim());
-            System.out.println("Nama : "+mhs.getNama());            
+    public void tambahAnggotaKelompok() {/*--belum--*/
+        System.out.println("--- Lihat Lokasi dan Perusahaan ---");                
+        String nama, fakultas, alamat, telp,  nim,  jurusan, lokasi, nomer;                
+        System.out.println("Masukkan lokasi : ");        
+            lokasi = scanner.next();
+        Lokasi lok=null;        
+        for(int i=0; i<daftarLokasi.size(); i++) {
+            lok = daftarLokasi.get(i);
+            if(lokasi.equals(lok.getKota())) {
+                System.out.println("Lokasi : "+lok.getKota());
+                System.out.println("Nama Perusahaan : "+lok.getNamaPerusahaan());
+            }
         }
-        pembimbing();
-    }
-    
+        
+        if (lokasi.equals(lok.getKota())) {
+            for(int j=0; j<lok.getJmlKelompok(); j++) {
+                if(lok.getKelompok(j).getJmlAnggota()<5) {
+                    System.out.println("Nomer Kelompok : "+lok.getKelompok(j).getNomerKelompok());
+                    System.out.println("Jumlah Anggota : "+lok.getKelompok(j).getJmlAnggota());
+                }                
+                else if (lok.getKelompok(j).getJmlAnggota()>=5) {
+                    System.out.println("FULL");
+                }
+            }
+            System.out.println("Masukkan nomer kelompok :  ");
+                nomer = scanner.next();            
+            
+            String pilihan = "Y";       
+            int j = 0;
+            int jmlAnggota = lok.getKelompok(j).getJmlAnggota(); // harusnya sesuai jumlah index terakhir
+            Kelompok kel=null;        
+            while (pilihan.equals("Y") && jmlAnggota<5) {
+                System.out.print("NIM        : ");
+                    nim = in.next();
+                System.out.print("Nama       : ");
+                    nama = in.next();    
+                System.out.print("Fakultas   : ");
+                    fakultas = in.next();
+                System.out.print("Jurusan    : ");
+                    jurusan = in.next();
+                System.out.print("Alamat     : ");
+                    alamat = in.next();
+                System.out.print("Telp       : ");
+                    telp = in.next();
+                jmlAnggota++;
+                Mahasiswa mhs = new Mahasiswa(nama, alamat, telp, nim, fakultas, jurusan);                
+                if (jmlAnggota < 5) {
+                    System.out.print("Tambah anggota ? (Y/N): ");
+                    pilihan = in.next();                
+                }                                  
+            }
+            daftarKelompok.add(kel);
+        }
+        mahasiswa();        
+    }           
 }
